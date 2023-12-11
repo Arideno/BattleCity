@@ -33,7 +33,6 @@
 		E272659F2B27149200DF4584 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E27265A12B27149400DF4584 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27265A42B27149400DF4584 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E27265A62B27149400DF4584 /* BattleCity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BattleCity.entitlements; sourceTree = "<group>"; };
 		E27265AD2B27154700DF4584 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		E27265B22B27164400DF4584 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E27265B42B27185500DF4584 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -84,7 +83,6 @@
 				E272659F2B27149200DF4584 /* ViewController.swift */,
 				E27265A12B27149400DF4584 /* Assets.xcassets */,
 				E27265A32B27149400DF4584 /* Main.storyboard */,
-				E27265A62B27149400DF4584 /* BattleCity.entitlements */,
 				E27265AF2B27155C00DF4584 /* Utils */,
 				E27265AC2B27154000DF4584 /* Entities */,
 			);
@@ -341,7 +339,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BattleCity/BattleCity.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -368,7 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BattleCity/BattleCity.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

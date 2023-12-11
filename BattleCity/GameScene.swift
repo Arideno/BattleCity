@@ -54,9 +54,9 @@ final class GameScene: SKScene {
             }
         }
 
-        for _ in 0..<level.difficulty.enemyCount {
+        for point in level.enemySpawnPoints {
             let enemy = Enemy()
-            enemy.position = CGPoint(x: CGFloat(level.enemySpawnPoint.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(level.enemySpawnPoint.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
+            enemy.position = CGPoint(x: CGFloat(point.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(point.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
             gameZone.addChild(enemy)
         }
 

@@ -95,12 +95,17 @@ final class LevelGenerator {
 
         grid[playerPosition.y][playerPosition.x] = .player
 
-        var enemySpawnPosition = Point(x: 0, y: 0)
-        while grid[enemySpawnPosition.y][enemySpawnPosition.x] != .space || manhattanDistance(a: enemySpawnPosition, b: playerPosition) <= 30 {
-            enemySpawnPosition = Point(x: Int.random(in: 0..<width), y: Int.random(in: 0..<height))
+        var enemySpawnPoints = [Point]()
+
+        for _ in 0..<difficulty.enemyCount {
+            var enemySpawnPosition = Point(x: 0, y: 0)
+            while grid[enemySpawnPosition.y][enemySpawnPosition.x] != .space || manhattanDistance(a: enemySpawnPosition, b: playerPosition) <= 30 || enemySpawnPoints.contains(enemySpawnPosition) {
+                enemySpawnPosition = Point(x: Int.random(in: 0..<width), y: Int.random(in: 0..<height))
+            }
+            enemySpawnPoints.append(enemySpawnPosition)
         }
 
-        return Level(width: width, height: height, grid: grid, playerPosition: playerPosition, enemySpawnPoint: enemySpawnPosition, difficulty: difficulty)
+        return Level(width: width, height: height, grid: grid, playerPosition: playerPosition, enemySpawnPoints: enemySpawnPoints, difficulty: difficulty)
     }
 }
 
