@@ -88,19 +88,27 @@ final class GameScene: SKScene {
             if let nextPoint {
                 if nextPoint.x > pos.x {
                     enemy.moveRight {
-                        self.enemyPositions[i].x += 1
+                        if i < self.enemyPositions.count {
+                            self.enemyPositions[i].x += 1
+                        }
                     }
                 } else if nextPoint.x < pos.x {
                     enemy.moveLeft {
-                        self.enemyPositions[i].x -= 1
+                        if i < self.enemyPositions.count {
+                            self.enemyPositions[i].x -= 1
+                        }
                     }
                 } else if nextPoint.y < pos.y {
                     enemy.moveDown {
-                        self.enemyPositions[i].y -= 1
+                        if i < self.enemyPositions.count {
+                            self.enemyPositions[i].y -= 1
+                        }
                     }
                 } else if nextPoint.y > pos.y {
                     enemy.moveUp {
-                        self.enemyPositions[i].y += 1
+                        if i < self.enemyPositions.count {
+                            self.enemyPositions[i].y += 1
+                        }
                     }
                 }
             }
@@ -147,6 +155,18 @@ final class GameScene: SKScene {
         let scene = GameOverScene(size: Constants.screenSize, score: score)
         scene.scaleMode = .aspectFill
         view?.presentScene(scene)
+    }
+
+    private func enemyKilled() {
+        if enemies.isEmpty {
+            for point in level.enemySpawnPoints {
+                let enemy = Enemy(gameZone: gameZone)
+                enemy.position = CGPoint(x: CGFloat(point.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(point.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
+                gameZone.addChild(enemy)
+                enemyPositions = level.enemySpawnPoints
+                enemies.append(enemy)
+            }
+        }
     }
 }
 
@@ -202,9 +222,10 @@ extension GameScene: SKPhysicsContactDelegate {
             contact.bodyB.node?.removeFromParent()
             score += level.difficulty.scoreForEnemy
             scoreText.text = "Score: \(score)"
+            enemyKilled()
         }
         if (contact.bodyA.node?.name == "enemy" && contact.bodyB.node?.name == "bulletPlayer") {
-            if let enemy = contact.bodyB.node as? Enemy, let index = enemies.firstIndex(of: enemy) {
+            if let enemy = contact.bodyA.node as? Enemy, let index = enemies.firstIndex(of: enemy) {
                 enemies.remove(at: index)
                 enemyPositions.remove(at: index)
             }
@@ -213,6 +234,7 @@ extension GameScene: SKPhysicsContactDelegate {
             contact.bodyB.node?.removeFromParent()
             score += level.difficulty.scoreForEnemy
             scoreText.text = "Score: \(score)"
+            enemyKilled()
         }
 
         if (contact.bodyA.node?.name == "bulletEnemy" && contact.bodyB.node?.name == "player") {
