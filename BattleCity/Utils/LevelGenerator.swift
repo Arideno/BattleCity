@@ -10,21 +10,22 @@ enum Cell {
     case space
     case base
     case player
-    case enemy
+    case enemySpawn
 }
 
 final class LevelGenerator {
     let width: Int
     let height: Int
-    var level: [[Cell]] = []
+    let difficulty: Difficulty
 
-    init(width: Int, height: Int) {
+    init(width: Int, height: Int, difficulty: Difficulty) {
         self.width = width
         self.height = height
+        self.difficulty = difficulty
     }
 
-    func build(gameZone: GameZone, player: Player) {
-        level = Array(repeating: Array(repeating: Cell.wall, count: width), count: height)
+    func build() -> Level {
+        var grid = Array(repeating: Array(repeating: Cell.wall, count: width), count: height)
         let startX = Int.random(in: 0..<width)
         let startY = Int.random(in: 0..<height)
 
@@ -33,11 +34,11 @@ final class LevelGenerator {
         }
 
         func dfs(x: Int, y: Int) {
-            if !isSafe(x: x, y: y) || level[y][x] == .space {
+            if !isSafe(x: x, y: y) || grid[y][x] == .space {
                 return
             }
 
-            level[y][x] = .space
+            grid[y][x] = .space
 
             var neighbors = [
                 Point(x: 2, y: 0),
@@ -52,58 +53,57 @@ final class LevelGenerator {
                 let newX = x + point.x
                 let newY = y + point.y
 
-                if isSafe(x: newX, y: newY) && level[newY][newX] == .wall {
+                if isSafe(x: newX, y: newY) && grid[newY][newX] == .wall {
                     if isSafe(x: x + point.x / 2, y: y + point.y / 2) {
-                        level[y + point.y / 2][x + point.x / 2] = .space
+                        grid[y + point.y / 2][x + point.x / 2] = .space
                     }
                     dfs(x: newX, y: newY)
                 }
             }
         }
 
-        func addExtraPaths() {
-            for _ in 0..<(width * height / 2) {
-                let x = Int.random(in: 1..<width - 1)
-                let y = Int.random(in: 1..<height - 1)
+        dfs(x: startX, y: startY)
 
-                if level[y][x] == .wall {
-                    level[y][x] = .space
-                }
+        for _ in 0..<(width * height / 4) {
+            let x = Int.random(in: 1..<width - 1)
+            let y = Int.random(in: 1..<height - 1)
+
+            if grid[y][x] == .wall {
+                grid[y][x] = .space
             }
         }
 
-        dfs(x: startX, y: startY)
-        addExtraPaths()
+        for i in 0..<width {
+            grid[0][i] = .space
+            grid[height - 1][i] = .space
+        }
+
+        for i in 0..<height {
+            grid[i][0] = .space
+            grid[i][width - 1] = .space
+        }
 
         for x in width / 2 - 1...width / 2 + 1 {
-            level[0][x] = .wall
-            level[1][x] = .wall
+            grid[0][x] = .wall
+            grid[1][x] = .wall
         }
-        level[0][width / 2] = .base
+        grid[0][width / 2] = .base
 
         var playerPosition = Point(x: 0, y: 0)
-        while level[playerPosition.y][playerPosition.x] != .space {
+        while grid[playerPosition.y][playerPosition.x] != .space {
             playerPosition = Point(x: Int.random(in: 0..<width), y: Int.random(in: 0..<height))
         }
 
-        level[playerPosition.y][playerPosition.x] = .player
+        grid[playerPosition.y][playerPosition.x] = .player
 
-        for y in 0..<height {
-            for x in 0..<width {
-                if level[y][x] == .wall {
-                    let wall = Wall()
-                    wall.position = CGPoint(x: CGFloat(x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(y) * Constants.cellSize.height + Constants.cellSize.height / 2)
-                    gameZone.addChild(wall)
-                }
-            }
+        var enemySpawnPosition = Point(x: 0, y: 0)
+        while grid[enemySpawnPosition.y][enemySpawnPosition.x] != .space && manhattanDistance(a: enemySpawnPosition, b: playerPosition) <= 15 {
+            enemySpawnPosition = Point(x: Int.random(in: 0..<width), y: Int.random(in: 0..<height))
         }
 
-        player.position = CGPoint(x: CGFloat(playerPosition.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(playerPosition.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
-        gameZone.addChild(player)
+        grid[enemySpawnPosition.y][enemySpawnPosition.x] = .enemySpawn
 
-        let base = Base()
-        base.position = CGPoint(x: CGFloat(width / 2) * Constants.cellSize.width + Constants.cellSize.width / 2, y: Constants.cellSize.height / 2)
-        gameZone.addChild(base)
+        return Level(width: width, height: height, grid: grid, difficulty: difficulty)
     }
 }
 
@@ -112,4 +112,8 @@ func gameZoneToLevelPosition(coordinate: CGPoint) -> Point {
         x: Int(((coordinate.x - Constants.cellSize.width / 2) / Constants.cellSize.width).rounded(.toNearestOrEven)),
         y: Int(((coordinate.y - Constants.cellSize.height / 2) / Constants.cellSize.height).rounded(.toNearestOrEven))
     )
+}
+
+func manhattanDistance(a: Point, b: Point) -> Int {
+    abs(a.x - b.x) + abs(a.y - b.y)
 }
