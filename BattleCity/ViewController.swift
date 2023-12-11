@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  BattleCity
-//
-//  Created by Andrii Moisol on 11.12.2023.
-//
-
 import Cocoa
 import SpriteKit
 import GameplayKit
@@ -17,7 +10,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         if let view = self.skView {
-            let scene = GameScene(size: CGSize(width: 1000, height: 750))
+            let scene = GameScene(size: CGSize(width: 1000, height: 800))
             scene.scaleMode = .aspectFill
             view.presentScene(scene)
 

@@ -12,6 +12,9 @@
 		E27265A02B27149200DF4584 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272659F2B27149200DF4584 /* ViewController.swift */; };
 		E27265A22B27149400DF4584 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27265A12B27149400DF4584 /* Assets.xcassets */; };
 		E27265A52B27149400DF4584 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27265A32B27149400DF4584 /* Main.storyboard */; };
+		E27265AE2B27154700DF4584 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265AD2B27154700DF4584 /* Player.swift */; };
+		E27265B12B27156400DF4584 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B02B27156400DF4584 /* Rotation.swift */; };
+		E27265B32B27164400DF4584 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B22B27164400DF4584 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		E27265A12B27149400DF4584 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27265A42B27149400DF4584 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E27265A62B27149400DF4584 /* BattleCity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BattleCity.entitlements; sourceTree = "<group>"; };
+		E27265AD2B27154700DF4584 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		E27265B02B27156400DF4584 /* Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
+		E27265B22B27164400DF4584 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +66,27 @@
 				E27265A12B27149400DF4584 /* Assets.xcassets */,
 				E27265A32B27149400DF4584 /* Main.storyboard */,
 				E27265A62B27149400DF4584 /* BattleCity.entitlements */,
+				E27265AF2B27155C00DF4584 /* Utils */,
+				E27265AC2B27154000DF4584 /* Entities */,
 			);
 			path = BattleCity;
+			sourceTree = "<group>";
+		};
+		E27265AC2B27154000DF4584 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E27265AD2B27154700DF4584 /* Player.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		E27265AF2B27155C00DF4584 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E27265B02B27156400DF4584 /* Rotation.swift */,
+				E27265B22B27164400DF4584 /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +159,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27265B12B27156400DF4584 /* Rotation.swift in Sources */,
+				E27265AE2B27154700DF4584 /* Player.swift in Sources */,
 				E27265A02B27149200DF4584 /* ViewController.swift in Sources */,
 				E272659E2B27149200DF4584 /* GameScene.swift in Sources */,
 				E27265982B27149200DF4584 /* AppDelegate.swift in Sources */,
+				E27265B32B27164400DF4584 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
