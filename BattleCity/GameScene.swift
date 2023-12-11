@@ -9,11 +9,10 @@ final class GameScene: SKScene {
         gameZone = GameZone(zoneColor: .black, zoneSize: Constants.screenSize)
         player = Player(gameZone: gameZone)
 
-        player.position = CGPoint(x: 20, y: 20)
-
-        gameZone.addChild(player)
-
         addChild(gameZone)
+
+        let levelGenerator = LevelGenerator(width: Int(Constants.screenSize.width / Constants.cellSize.width), height: Int(Constants.screenSize.height / Constants.cellSize.height))
+        levelGenerator.build(gameZone: gameZone, player: player)
 
         physicsWorld.contactDelegate = self
     }

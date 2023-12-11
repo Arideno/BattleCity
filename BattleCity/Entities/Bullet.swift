@@ -19,16 +19,16 @@ final class Bullet: SKShapeNode {
         switch direction {
         case .left:
             addBulletX = -30
-            bulletMoveAction = SKAction.moveTo(x: 0, duration: TimeInterval(position.x / 200))
+            bulletMoveAction = SKAction.moveTo(x: 0, duration: (position.x + addBulletX) / 300)
         case .right:
             addBulletX = 30
-            bulletMoveAction = SKAction.moveTo(x: Constants.screenSize.width, duration: TimeInterval(position.x / 200))
+            bulletMoveAction = SKAction.moveTo(x: Constants.screenSize.width, duration: (Constants.screenSize.width - (position.x + addBulletX)) / 300)
         case .up:
             addBulletY = 30
-            bulletMoveAction = SKAction.moveTo(y: Constants.screenSize.height, duration: TimeInterval(position.y / 200))
+            bulletMoveAction = SKAction.moveTo(y: Constants.screenSize.height, duration: (Constants.screenSize.height - (position.y + addBulletY)) / 300)
         case .down:
             addBulletY = -30
-            bulletMoveAction = SKAction.moveTo(y: 0, duration: TimeInterval(position.y / 200))
+            bulletMoveAction = SKAction.moveTo(y: 0, duration: (position.y + addBulletY) / 300)
         }
 
         self.position = CGPoint(x: position.x + addBulletX, y: position.y + addBulletY)

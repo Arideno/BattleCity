@@ -18,6 +18,9 @@
 		E27265B72B27199000DF4584 /* GameZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B62B27199000DF4584 /* GameZone.swift */; };
 		E27265B92B271E2800DF4584 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B82B271E2800DF4584 /* Bullet.swift */; };
 		E27265BB2B271E6400DF4584 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265BA2B271E6400DF4584 /* Rotation.swift */; };
+		E27265BD2B27216E00DF4584 /* LevelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265BC2B27216E00DF4584 /* LevelGenerator.swift */; };
+		E27265BF2B272E1600DF4584 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265BE2B272E1600DF4584 /* Wall.swift */; };
+		E27265C12B2734DA00DF4584 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265C02B2734DA00DF4584 /* Base.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		E27265B62B27199000DF4584 /* GameZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZone.swift; sourceTree = "<group>"; };
 		E27265B82B271E2800DF4584 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		E27265BA2B271E6400DF4584 /* Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
+		E27265BC2B27216E00DF4584 /* LevelGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGenerator.swift; sourceTree = "<group>"; };
+		E27265BE2B272E1600DF4584 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		E27265C02B2734DA00DF4584 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,8 @@
 				E27265AD2B27154700DF4584 /* Player.swift */,
 				E27265B62B27199000DF4584 /* GameZone.swift */,
 				E27265B82B271E2800DF4584 /* Bullet.swift */,
+				E27265BE2B272E1600DF4584 /* Wall.swift */,
+				E27265C02B2734DA00DF4584 /* Base.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -94,6 +102,7 @@
 			children = (
 				E27265B22B27164400DF4584 /* Constants.swift */,
 				E27265BA2B271E6400DF4584 /* Rotation.swift */,
+				E27265BC2B27216E00DF4584 /* LevelGenerator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -168,8 +177,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27265C12B2734DA00DF4584 /* Base.swift in Sources */,
 				E27265AE2B27154700DF4584 /* Player.swift in Sources */,
 				E27265A02B27149200DF4584 /* ViewController.swift in Sources */,
+				E27265BD2B27216E00DF4584 /* LevelGenerator.swift in Sources */,
+				E27265BF2B272E1600DF4584 /* Wall.swift in Sources */,
 				E272659E2B27149200DF4584 /* MainScene.swift in Sources */,
 				E27265982B27149200DF4584 /* AppDelegate.swift in Sources */,
 				E27265B52B27185500DF4584 /* GameScene.swift in Sources */,
