@@ -10,7 +10,17 @@ final class GameScene: SKScene {
     private var score = 0
     private var scoreText: SKLabelNode!
     private var prevTime: TimeInterval = 0
+    private let difficulty: Difficulty
 
+    init(size: CGSize, difficulty: Difficulty) {
+        self.difficulty = difficulty
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func didMove(to view: SKView) {
         scoreText = SKLabelNode(text: "Score: \(score)")
         scoreText.position = CGPoint(x: 70, y: 40)
@@ -23,7 +33,7 @@ final class GameScene: SKScene {
         addChild(gameZone)
         addChild(scoreText)
 
-        let levelGenerator = LevelGenerator(width: Int(Constants.screenSize.width / Constants.cellSize.width), height: Int(Constants.screenSize.height / Constants.cellSize.height), difficulty: .hard)
+        let levelGenerator = LevelGenerator(width: Int(Constants.screenSize.width / Constants.cellSize.width), height: Int(Constants.screenSize.height / Constants.cellSize.height), difficulty: difficulty)
         level = levelGenerator.build()
 
         drawLevel()
@@ -69,7 +79,7 @@ final class GameScene: SKScene {
                 basePath = BFS().findPath(from: pos, to: levelCopy.basePosition, in: levelCopy.grid)
             }
 
-            if playerPath.count > 1 && playerPath.count < (basePath?.count ?? 0) {
+            if playerPath.count > 1 && playerPath.count < (basePath?.count ?? 100000) {
                 nextPoint = playerPath[1]
             } else if let base = basePath, base.count > 1 {
                 nextPoint = base[1]

@@ -15,7 +15,6 @@ class ViewController: NSViewController {
             view.presentScene(scene)
 
             view.ignoresSiblingOrder = true
-            view.showsPhysics = true
         }
     }
 }
