@@ -15,6 +15,7 @@ final class GameScene: SKScene {
 
         gameZone = GameZone(zoneColor: .black, zoneSize: Constants.screenSize)
         player = Player(gameZone: gameZone)
+        player.delegate = self
 
         addChild(gameZone)
         addChild(scoreText)
@@ -39,7 +40,6 @@ final class GameScene: SKScene {
     }
 
     private func drawLevel() {
-        var playerPosition = Point(x: 0, y: 0)
         var basePosition = Point(x: 0, y: 0)
 
         for y in 0..<level.height {
@@ -48,21 +48,19 @@ final class GameScene: SKScene {
                     let wall = Wall()
                     wall.position = CGPoint(x: CGFloat(x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(y) * Constants.cellSize.height + Constants.cellSize.height / 2)
                     gameZone.addChild(wall)
-                } else if level.grid[y][x] == .player {
-                    playerPosition = Point(x: x, y: y)
                 } else if level.grid[y][x] == .base {
                     basePosition = Point(x: x, y: y)
-                } else if level.grid[y][x] == .enemySpawn {
-                    for _ in 0..<level.difficulty.enemyCount {
-                        let enemy = Enemy()
-                        enemy.position = CGPoint(x: CGFloat(x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(y) * Constants.cellSize.height + Constants.cellSize.height / 2)
-                        gameZone.addChild(enemy)
-                    }
                 }
             }
         }
 
-        player.position = CGPoint(x: CGFloat(playerPosition.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(playerPosition.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
+        for _ in 0..<level.difficulty.enemyCount {
+            let enemy = Enemy()
+            enemy.position = CGPoint(x: CGFloat(level.enemySpawnPoint.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(level.enemySpawnPoint.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
+            gameZone.addChild(enemy)
+        }
+
+        player.position = CGPoint(x: CGFloat(level.playerPosition.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(level.playerPosition.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
         gameZone.addChild(player)
 
         let base = Base()
@@ -124,7 +122,13 @@ extension GameScene: SKPhysicsContactDelegate {
             contact.bodyB.node?.removeFromParent()
             score += level.difficulty.scoreForEnemy
             scoreText.text = "Score: \(score)"
-
         }
+    }
+}
+
+extension GameScene: PlayerDelegate {
+    func onPlayerMoved(direction: Direction) {
+        level.movePlayerPosition(direction: direction)
+        print(level!)
     }
 }

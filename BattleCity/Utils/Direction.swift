@@ -1,5 +1,5 @@
 import Foundation
 
-enum Rotation {
+enum Direction {
     case up, down, left, right
 }

@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 final class Enemy: SKSpriteNode {
-    private var direction: Rotation = .up
+    private var direction: Direction = .up
 
     convenience init() {
         self.init(imageNamed: "enemy")

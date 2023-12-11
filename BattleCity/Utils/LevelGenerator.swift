@@ -10,7 +10,6 @@ enum Cell {
     case space
     case base
     case player
-    case enemySpawn
 }
 
 final class LevelGenerator {
@@ -97,13 +96,11 @@ final class LevelGenerator {
         grid[playerPosition.y][playerPosition.x] = .player
 
         var enemySpawnPosition = Point(x: 0, y: 0)
-        while grid[enemySpawnPosition.y][enemySpawnPosition.x] != .space && manhattanDistance(a: enemySpawnPosition, b: playerPosition) <= 15 {
+        while grid[enemySpawnPosition.y][enemySpawnPosition.x] != .space || manhattanDistance(a: enemySpawnPosition, b: playerPosition) <= 30 {
             enemySpawnPosition = Point(x: Int.random(in: 0..<width), y: Int.random(in: 0..<height))
         }
 
-        grid[enemySpawnPosition.y][enemySpawnPosition.x] = .enemySpawn
-
-        return Level(width: width, height: height, grid: grid, difficulty: difficulty)
+        return Level(width: width, height: height, grid: grid, playerPosition: playerPosition, enemySpawnPoint: enemySpawnPosition, difficulty: difficulty)
     }
 }
 

@@ -12,7 +12,7 @@ final class Bullet: SKShapeNode {
         self.name = isPlayer ? "bulletPlayer" : "bulletEnemy"
     }
 
-    func spawn(direction: Rotation, position: CGPoint) {
+    func spawn(direction: Direction, position: CGPoint) {
         var addBulletY: CGFloat = 0
         var addBulletX: CGFloat = 0
         let bulletMoveAction: SKAction
