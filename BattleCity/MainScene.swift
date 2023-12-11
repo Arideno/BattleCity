@@ -1,6 +1,6 @@
 import SpriteKit
 
-class MainScene: SKScene {
+final class MainScene: SKScene {
 
     private var button: SKSpriteNode!
 

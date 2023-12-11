@@ -13,9 +13,11 @@
 		E27265A22B27149400DF4584 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27265A12B27149400DF4584 /* Assets.xcassets */; };
 		E27265A52B27149400DF4584 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27265A32B27149400DF4584 /* Main.storyboard */; };
 		E27265AE2B27154700DF4584 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265AD2B27154700DF4584 /* Player.swift */; };
-		E27265B12B27156400DF4584 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B02B27156400DF4584 /* Rotation.swift */; };
 		E27265B32B27164400DF4584 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B22B27164400DF4584 /* Constants.swift */; };
 		E27265B52B27185500DF4584 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B42B27185500DF4584 /* GameScene.swift */; };
+		E27265B72B27199000DF4584 /* GameZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B62B27199000DF4584 /* GameZone.swift */; };
+		E27265B92B271E2800DF4584 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B82B271E2800DF4584 /* Bullet.swift */; };
+		E27265BB2B271E6400DF4584 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265BA2B271E6400DF4584 /* Rotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +29,11 @@
 		E27265A42B27149400DF4584 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E27265A62B27149400DF4584 /* BattleCity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BattleCity.entitlements; sourceTree = "<group>"; };
 		E27265AD2B27154700DF4584 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		E27265B02B27156400DF4584 /* Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
 		E27265B22B27164400DF4584 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E27265B42B27185500DF4584 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		E27265B62B27199000DF4584 /* GameZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZone.swift; sourceTree = "<group>"; };
+		E27265B82B271E2800DF4584 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		E27265BA2B271E6400DF4584 /* Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				E27265AD2B27154700DF4584 /* Player.swift */,
+				E27265B62B27199000DF4584 /* GameZone.swift */,
+				E27265B82B271E2800DF4584 /* Bullet.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -86,8 +92,8 @@
 		E27265AF2B27155C00DF4584 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E27265B02B27156400DF4584 /* Rotation.swift */,
 				E27265B22B27164400DF4584 /* Constants.swift */,
+				E27265BA2B271E6400DF4584 /* Rotation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -162,13 +168,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E27265B12B27156400DF4584 /* Rotation.swift in Sources */,
 				E27265AE2B27154700DF4584 /* Player.swift in Sources */,
 				E27265A02B27149200DF4584 /* ViewController.swift in Sources */,
 				E272659E2B27149200DF4584 /* MainScene.swift in Sources */,
 				E27265982B27149200DF4584 /* AppDelegate.swift in Sources */,
 				E27265B52B27185500DF4584 /* GameScene.swift in Sources */,
+				E27265BB2B271E6400DF4584 /* Rotation.swift in Sources */,
 				E27265B32B27164400DF4584 /* Constants.swift in Sources */,
+				E27265B72B27199000DF4584 /* GameZone.swift in Sources */,
+				E27265B92B271E2800DF4584 /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,9 +318,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BattleCity/BattleCity.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W25X3836JP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -335,9 +345,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BattleCity/BattleCity.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W25X3836JP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
