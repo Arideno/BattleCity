@@ -20,7 +20,7 @@ final class Player: SKSpriteNode {
     func moveUp() {
         guard !hasActions() else { return }
         direction = .up
-        run(SKAction.sequence([SKAction.rotate(toAngle: 0, duration: 0), SKAction.move(by: CGVector(dx: 0, dy: Constants.cellSize.height), duration: 0.2)]))
+        run(SKAction.sequence([SKAction.rotate(toAngle: 0, duration: 0), SKAction.move(by: CGVector(dx: 0, dy: Constants.cellSize.height), duration: 0.1)]))
         { [weak delegate] in
             delegate?.onPlayerMoved(direction: .up)
         }
@@ -29,7 +29,7 @@ final class Player: SKSpriteNode {
     func moveDown() {
         guard !hasActions() else { return }
         direction = .down
-        run(SKAction.sequence([SKAction.rotate(toAngle: .pi, duration: 0), SKAction.move(by: CGVector(dx: 0, dy: -Constants.cellSize.height), duration: 0.2)])) { [weak delegate] in
+        run(SKAction.sequence([SKAction.rotate(toAngle: .pi, duration: 0), SKAction.move(by: CGVector(dx: 0, dy: -Constants.cellSize.height), duration: 0.1)])) { [weak delegate] in
             delegate?.onPlayerMoved(direction: .down)
         }
     }
@@ -37,7 +37,7 @@ final class Player: SKSpriteNode {
     func moveLeft() {
         guard !hasActions() else { return }
         direction = .left
-        run(SKAction.sequence([SKAction.rotate(toAngle: .pi / 2, duration: 0), SKAction.move(by: CGVector(dx: -Constants.cellSize.width, dy: 0), duration: 0.2)])) { [weak delegate] in
+        run(SKAction.sequence([SKAction.rotate(toAngle: .pi / 2, duration: 0), SKAction.move(by: CGVector(dx: -Constants.cellSize.width, dy: 0), duration: 0.1)])) { [weak delegate] in
             delegate?.onPlayerMoved(direction: .left)
         }
     }
@@ -45,7 +45,7 @@ final class Player: SKSpriteNode {
     func moveRight() {
         guard !hasActions() else { return }
         direction = .right
-        run(SKAction.sequence([SKAction.rotate(toAngle: -.pi / 2, duration: 0), SKAction.move(by: CGVector(dx: Constants.cellSize.width, dy: 0), duration: 0.2)])) { [weak delegate] in
+        run(SKAction.sequence([SKAction.rotate(toAngle: -.pi / 2, duration: 0), SKAction.move(by: CGVector(dx: Constants.cellSize.width, dy: 0), duration: 0.1)])) { [weak delegate] in
             delegate?.onPlayerMoved(direction: .right)
         }
     }

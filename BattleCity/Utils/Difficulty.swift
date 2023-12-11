@@ -20,4 +20,20 @@ enum Difficulty {
         case .hard: 20
         }
     }
+
+    var pathFindingAlgorithm: PathAlgorithm {
+        switch self {
+        case .easy: DFS()
+        case .normal: BFS()
+        case .hard: AStar()
+        }
+    }
+
+    var shootingStrategy: ShootingStrategy {
+        switch self {
+        case .easy: ShootPlayerOnlyIfNoObstaclesShootingStrategy()
+        case .normal: ShootPlayerStrategy()
+        case .hard: ShootBaseOrPlayerStrategy()
+        }
+    }
 }

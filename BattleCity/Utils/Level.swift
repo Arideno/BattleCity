@@ -6,6 +6,7 @@ struct Level {
     var grid: [[Cell]]
     var playerPosition: Point
     let enemySpawnPoints: [Point]
+    let basePosition: Point
     let difficulty: Difficulty
 
     mutating func movePlayerPosition(direction: Direction) {

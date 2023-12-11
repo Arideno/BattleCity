@@ -24,6 +24,18 @@
 		E27265C32B27382300DF4584 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265C22B27382300DF4584 /* Enemy.swift */; };
 		E27265C52B27388200DF4584 /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265C42B27388200DF4584 /* Difficulty.swift */; };
 		E27265C72B2738C900DF4584 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265C62B2738C900DF4584 /* Level.swift */; };
+		E27265CA2B27474F00DF4584 /* PathAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265C92B27474F00DF4584 /* PathAlgorithm.swift */; };
+		E27265CC2B27477300DF4584 /* DFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265CB2B27477300DF4584 /* DFS.swift */; };
+		E27265CE2B27492400DF4584 /* BFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265CD2B27492400DF4584 /* BFS.swift */; };
+		E27265D02B27494400DF4584 /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265CF2B27494400DF4584 /* AStar.swift */; };
+		E27265D52B27564400DF4584 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = E27265D42B27564400DF4584 /* Collections */; };
+		E27265D72B27564400DF4584 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = E27265D62B27564400DF4584 /* DequeModule */; };
+		E27265D92B27564400DF4584 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = E27265D82B27564400DF4584 /* OrderedCollections */; };
+		E27265DB2B275BBF00DF4584 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265DA2B275BBF00DF4584 /* GameOverScene.swift */; };
+		E27265DD2B275F1000DF4584 /* ShootingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265DC2B275F1000DF4584 /* ShootingStrategy.swift */; };
+		E27265DF2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265DE2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift */; };
+		E27265E12B2760C400DF4584 /* ShootPlayerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265E02B2760C400DF4584 /* ShootPlayerStrategy.swift */; };
+		E27265E32B27612C00DF4584 /* ShootBaseOrPlayerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265E22B27612C00DF4584 /* ShootBaseOrPlayerStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +57,15 @@
 		E27265C22B27382300DF4584 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		E27265C42B27388200DF4584 /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		E27265C62B2738C900DF4584 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		E27265C92B27474F00DF4584 /* PathAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathAlgorithm.swift; sourceTree = "<group>"; };
+		E27265CB2B27477300DF4584 /* DFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFS.swift; sourceTree = "<group>"; };
+		E27265CD2B27492400DF4584 /* BFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFS.swift; sourceTree = "<group>"; };
+		E27265CF2B27494400DF4584 /* AStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
+		E27265DA2B275BBF00DF4584 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		E27265DC2B275F1000DF4584 /* ShootingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootingStrategy.swift; sourceTree = "<group>"; };
+		E27265DE2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift; sourceTree = "<group>"; };
+		E27265E02B2760C400DF4584 /* ShootPlayerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootPlayerStrategy.swift; sourceTree = "<group>"; };
+		E27265E22B27612C00DF4584 /* ShootBaseOrPlayerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootBaseOrPlayerStrategy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27265D52B27564400DF4584 /* Collections in Frameworks */,
+				E27265D72B27564400DF4584 /* DequeModule in Frameworks */,
+				E27265D92B27564400DF4584 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,9 +104,11 @@
 				E27265972B27149200DF4584 /* AppDelegate.swift */,
 				E272659D2B27149200DF4584 /* MainScene.swift */,
 				E27265B42B27185500DF4584 /* GameScene.swift */,
+				E27265DA2B275BBF00DF4584 /* GameOverScene.swift */,
 				E272659F2B27149200DF4584 /* ViewController.swift */,
 				E27265A12B27149400DF4584 /* Assets.xcassets */,
 				E27265A32B27149400DF4584 /* Main.storyboard */,
+				E27265C82B27474500DF4584 /* Strategies */,
 				E27265AF2B27155C00DF4584 /* Utils */,
 				E27265AC2B27154000DF4584 /* Entities */,
 			);
@@ -114,6 +140,21 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		E27265C82B27474500DF4584 /* Strategies */ = {
+			isa = PBXGroup;
+			children = (
+				E27265C92B27474F00DF4584 /* PathAlgorithm.swift */,
+				E27265CD2B27492400DF4584 /* BFS.swift */,
+				E27265CF2B27494400DF4584 /* AStar.swift */,
+				E27265CB2B27477300DF4584 /* DFS.swift */,
+				E27265DC2B275F1000DF4584 /* ShootingStrategy.swift */,
+				E27265DE2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift */,
+				E27265E02B2760C400DF4584 /* ShootPlayerStrategy.swift */,
+				E27265E22B27612C00DF4584 /* ShootBaseOrPlayerStrategy.swift */,
+			);
+			path = Strategies;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,6 +171,11 @@
 			dependencies = (
 			);
 			name = BattleCity;
+			packageProductDependencies = (
+				E27265D42B27564400DF4584 /* Collections */,
+				E27265D62B27564400DF4584 /* DequeModule */,
+				E27265D82B27564400DF4584 /* OrderedCollections */,
+			);
 			productName = BattleCity;
 			productReference = E27265942B27149200DF4584 /* BattleCity.app */;
 			productType = "com.apple.product-type.application";
@@ -158,6 +204,9 @@
 				Base,
 			);
 			mainGroup = E272658B2B27149200DF4584;
+			packageReferences = (
+				E27265D32B27564400DF4584 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = E27265952B27149200DF4584 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -185,19 +234,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				E27265C12B2734DA00DF4584 /* Base.swift in Sources */,
+				E27265CA2B27474F00DF4584 /* PathAlgorithm.swift in Sources */,
 				E27265AE2B27154700DF4584 /* Player.swift in Sources */,
 				E27265C52B27388200DF4584 /* Difficulty.swift in Sources */,
 				E27265C72B2738C900DF4584 /* Level.swift in Sources */,
+				E27265CE2B27492400DF4584 /* BFS.swift in Sources */,
 				E27265C32B27382300DF4584 /* Enemy.swift in Sources */,
 				E27265A02B27149200DF4584 /* ViewController.swift in Sources */,
 				E27265BD2B27216E00DF4584 /* LevelGenerator.swift in Sources */,
+				E27265DD2B275F1000DF4584 /* ShootingStrategy.swift in Sources */,
 				E27265BF2B272E1600DF4584 /* Wall.swift in Sources */,
+				E27265DB2B275BBF00DF4584 /* GameOverScene.swift in Sources */,
 				E272659E2B27149200DF4584 /* MainScene.swift in Sources */,
+				E27265CC2B27477300DF4584 /* DFS.swift in Sources */,
 				E27265982B27149200DF4584 /* AppDelegate.swift in Sources */,
 				E27265B52B27185500DF4584 /* GameScene.swift in Sources */,
 				E27265BB2B271E6400DF4584 /* Direction.swift in Sources */,
 				E27265B32B27164400DF4584 /* Constants.swift in Sources */,
+				E27265E32B27612C00DF4584 /* ShootBaseOrPlayerStrategy.swift in Sources */,
 				E27265B72B27199000DF4584 /* GameZone.swift in Sources */,
+				E27265DF2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift in Sources */,
+				E27265E12B2760C400DF4584 /* ShootPlayerStrategy.swift in Sources */,
+				E27265D02B27494400DF4584 /* AStar.swift in Sources */,
 				E27265B92B271E2800DF4584 /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +468,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E27265D32B27564400DF4584 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E27265D42B27564400DF4584 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E27265D32B27564400DF4584 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		E27265D62B27564400DF4584 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E27265D32B27564400DF4584 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		E27265D82B27564400DF4584 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E27265D32B27564400DF4584 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E272658C2B27149200DF4584 /* Project object */;
 }

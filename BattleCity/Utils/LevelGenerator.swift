@@ -105,7 +105,7 @@ final class LevelGenerator {
             enemySpawnPoints.append(enemySpawnPosition)
         }
 
-        return Level(width: width, height: height, grid: grid, playerPosition: playerPosition, enemySpawnPoints: enemySpawnPoints, difficulty: difficulty)
+        return Level(width: width, height: height, grid: grid, playerPosition: playerPosition, enemySpawnPoints: enemySpawnPoints, basePosition: Point(x: width / 2, y: 0), difficulty: difficulty)
     }
 }
 

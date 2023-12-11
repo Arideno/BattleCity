@@ -15,9 +15,7 @@ class ViewController: NSViewController {
             view.presentScene(scene)
 
             view.ignoresSiblingOrder = true
-
-            view.showsFPS = true
-            view.showsNodeCount = true
+            view.showsPhysics = true
         }
     }
 }
