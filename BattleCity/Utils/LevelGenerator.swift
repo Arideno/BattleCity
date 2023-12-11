@@ -1,5 +1,18 @@
 import Foundation
 
+struct Point: Hashable {
+    var x: Int
+    var y: Int
+}
+
+enum Cell {
+    case wall
+    case space
+    case base
+    case player
+    case enemy
+}
+
 final class LevelGenerator {
     let width: Int
     let height: Int
@@ -8,19 +21,6 @@ final class LevelGenerator {
     init(width: Int, height: Int) {
         self.width = width
         self.height = height
-    }
-
-    struct Point: Hashable {
-        var x: Int
-        var y: Int
-    }
-
-    enum Cell {
-        case wall
-        case space
-        case base
-        case player
-        case enemy
     }
 
     func build(gameZone: GameZone, player: Player) {
@@ -105,4 +105,11 @@ final class LevelGenerator {
         base.position = CGPoint(x: CGFloat(width / 2) * Constants.cellSize.width + Constants.cellSize.width / 2, y: Constants.cellSize.height / 2)
         gameZone.addChild(base)
     }
+}
+
+func gameZoneToLevelPosition(coordinate: CGPoint) -> Point {
+    Point(
+        x: Int(((coordinate.x - Constants.cellSize.width / 2) / Constants.cellSize.width).rounded(.toNearestOrEven)),
+        y: Int(((coordinate.y - Constants.cellSize.height / 2) / Constants.cellSize.height).rounded(.toNearestOrEven))
+    )
 }
