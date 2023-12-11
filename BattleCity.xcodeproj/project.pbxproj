@@ -8,19 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		E27265982B27149200DF4584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265972B27149200DF4584 /* AppDelegate.swift */; };
-		E272659E2B27149200DF4584 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272659D2B27149200DF4584 /* GameScene.swift */; };
+		E272659E2B27149200DF4584 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272659D2B27149200DF4584 /* MainScene.swift */; };
 		E27265A02B27149200DF4584 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272659F2B27149200DF4584 /* ViewController.swift */; };
 		E27265A22B27149400DF4584 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27265A12B27149400DF4584 /* Assets.xcassets */; };
 		E27265A52B27149400DF4584 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27265A32B27149400DF4584 /* Main.storyboard */; };
 		E27265AE2B27154700DF4584 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265AD2B27154700DF4584 /* Player.swift */; };
 		E27265B12B27156400DF4584 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B02B27156400DF4584 /* Rotation.swift */; };
 		E27265B32B27164400DF4584 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B22B27164400DF4584 /* Constants.swift */; };
+		E27265B52B27185500DF4584 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265B42B27185500DF4584 /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E27265942B27149200DF4584 /* BattleCity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BattleCity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27265972B27149200DF4584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E272659D2B27149200DF4584 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		E272659D2B27149200DF4584 /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
 		E272659F2B27149200DF4584 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E27265A12B27149400DF4584 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27265A42B27149400DF4584 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -28,6 +29,7 @@
 		E27265AD2B27154700DF4584 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		E27265B02B27156400DF4584 /* Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
 		E27265B22B27164400DF4584 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E27265B42B27185500DF4584 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				E27265972B27149200DF4584 /* AppDelegate.swift */,
-				E272659D2B27149200DF4584 /* GameScene.swift */,
+				E272659D2B27149200DF4584 /* MainScene.swift */,
+				E27265B42B27185500DF4584 /* GameScene.swift */,
 				E272659F2B27149200DF4584 /* ViewController.swift */,
 				E27265A12B27149400DF4584 /* Assets.xcassets */,
 				E27265A32B27149400DF4584 /* Main.storyboard */,
@@ -162,8 +165,9 @@
 				E27265B12B27156400DF4584 /* Rotation.swift in Sources */,
 				E27265AE2B27154700DF4584 /* Player.swift in Sources */,
 				E27265A02B27149200DF4584 /* ViewController.swift in Sources */,
-				E272659E2B27149200DF4584 /* GameScene.swift in Sources */,
+				E272659E2B27149200DF4584 /* MainScene.swift in Sources */,
 				E27265982B27149200DF4584 /* AppDelegate.swift in Sources */,
+				E27265B52B27185500DF4584 /* GameScene.swift in Sources */,
 				E27265B32B27164400DF4584 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

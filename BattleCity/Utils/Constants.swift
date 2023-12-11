@@ -13,4 +13,5 @@ struct Constants {
     static let baseFlag: UInt32 = 1 << 4
 
     static let cellSize: CGSize = CGSize(width: 40, height: 40)
+    static let screenSize: CGSize = CGSize(width: 1000, height: 800)
 }
