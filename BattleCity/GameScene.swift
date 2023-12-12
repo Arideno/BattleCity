@@ -4,13 +4,13 @@ final class GameScene: SKScene {
 
     private var gameZone: GameZone!
     private var player: Player!
-    private var enemyPositions = [Point]()
     private var enemies = [Enemy]()
     private var level: Level!
     private var score = 0
     private var scoreText: SKLabelNode!
     private var prevTime: TimeInterval = 0
     private let difficulty: Difficulty
+    private var levelGenerator: LevelGenerator!
 
     init(size: CGSize, difficulty: Difficulty) {
         self.difficulty = difficulty
@@ -28,12 +28,11 @@ final class GameScene: SKScene {
 
         gameZone = GameZone(zoneColor: .black, zoneSize: Constants.screenSize)
         player = Player(gameZone: gameZone)
-        player.delegate = self
 
         addChild(gameZone)
         addChild(scoreText)
 
-        let levelGenerator = LevelGenerator(width: Int(Constants.screenSize.width / Constants.cellSize.width), height: Int(Constants.screenSize.height / Constants.cellSize.height), difficulty: difficulty)
+        levelGenerator = LevelGenerator(width: Int(Constants.screenSize.width / Constants.cellSize.width), height: Int(Constants.screenSize.height / Constants.cellSize.height), difficulty: difficulty)
         level = levelGenerator.build()
 
         drawLevel()
@@ -43,39 +42,62 @@ final class GameScene: SKScene {
 
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
-        case Constants.upArrow: player.moveUp()
-        case Constants.downArrow: player.moveDown()
-        case Constants.leftArrow: player.moveLeft()
-        case Constants.rightArrow: player.moveRight()
+        case Constants.upArrow: 
+            if !player.isMoving {
+                player.direction = .up
+                player.isCommandedToMove = true
+            }
+        case Constants.downArrow:
+            if !player.isMoving {
+                player.direction = .down
+                player.isCommandedToMove = true
+            }
+        case Constants.leftArrow:
+            if !player.isMoving {
+                player.direction = .left
+                player.isCommandedToMove = true
+            }
+        case Constants.rightArrow:
+            if !player.isMoving {
+                player.direction = .right
+                player.isCommandedToMove = true
+            }
         case Constants.space: player.shoot()
         default: break
         }
     }
 
+    override func keyUp(with event: NSEvent) {
+        switch event.keyCode {
+        case Constants.upArrow, Constants.downArrow, Constants.leftArrow, Constants.rightArrow:
+            player.isCommandedToMove = false
+        default: break
+        }
+    }
+
     override func update(_ currentTime: TimeInterval) {
-        if abs(prevTime - currentTime) > 0.5 {
+        if abs(prevTime - currentTime) > 0.01 {
             enemyAction(currentTime: currentTime)
+            player.move()
             prevTime = currentTime
         }
     }
 
     private func enemyAction(currentTime: TimeInterval) {
-        for i in enemies.indices {
-            let enemy = enemies[i]
-            let pos = enemyPositions[i]
-            let playerPath = level.difficulty.pathFindingAlgorithm.findPath(from: pos, to: level.playerPosition, in: level.grid)
+        for enemy in enemies {
+            let pos = gameZoneToLevelPosition(coordinate: enemy.position)
+            let playerPos = gameZoneToLevelPosition(coordinate: player.position)
+            let playerPath = level.difficulty.pathFindingAlgorithm.findPath(from: pos, to: playerPos, in: level.grid)
             var basePath: [Point]?
             var nextPoint: Point?
 
             if level.difficulty == .hard {
                 var levelCopy = level!
-                for y in 0..<levelCopy.height {
-                    for x in 0..<levelCopy.width {
-                        if levelCopy.grid[y][x] == .wall {
-                            levelCopy.grid[y][x] = .space
-                        }
-                    }
-                }
+                levelCopy.grid[0][levelCopy.width / 2 - 1] = .space
+                levelCopy.grid[0][levelCopy.width / 2 + 1] = .space
+                levelCopy.grid[1][levelCopy.width / 2 + 1] = .space
+                levelCopy.grid[1][levelCopy.width / 2 - 1] = .space
+                levelCopy.grid[1][levelCopy.width / 2] = .space
                 basePath = BFS().findPath(from: pos, to: levelCopy.basePosition, in: levelCopy.grid)
             }
 
@@ -86,34 +108,28 @@ final class GameScene: SKScene {
             }
 
             if let nextPoint {
-                if nextPoint.x > pos.x {
-                    enemy.moveRight {
-                        if i < self.enemyPositions.count {
-                            self.enemyPositions[i].x += 1
-                        }
-                    }
-                } else if nextPoint.x < pos.x {
-                    enemy.moveLeft {
-                        if i < self.enemyPositions.count {
-                            self.enemyPositions[i].x -= 1
-                        }
-                    }
-                } else if nextPoint.y < pos.y {
-                    enemy.moveDown {
-                        if i < self.enemyPositions.count {
-                            self.enemyPositions[i].y -= 1
-                        }
-                    }
-                } else if nextPoint.y > pos.y {
-                    enemy.moveUp {
-                        if i < self.enemyPositions.count {
-                            self.enemyPositions[i].y += 1
-                        }
+                if !enemy.isMoving {
+                    if nextPoint.x > pos.x {
+                        enemy.direction = .right
+                    } else if nextPoint.x < pos.x {
+                        enemy.direction = .left
+                    } else if nextPoint.y < pos.y {
+                        enemy.direction = .down
+                    } else if nextPoint.y > pos.y {
+                        enemy.direction = .up
                     }
                 }
+
+                enemy.move()
             }
 
-            if level.difficulty.shootingStrategy.shouldShoot(enemyPos: enemyPositions[i], enemyDir: enemy.direction, level: level) {
+            if level.difficulty.shootingStrategy.shouldShoot(
+                enemyPos: pos,
+                enemyDir: enemy.direction,
+                playerPosition: playerPos,
+                basePosition: level.basePosition,
+                grid: level.grid
+            ) {
                 enemy.shoot(currentTime: currentTime)
             }
         }
@@ -134,11 +150,10 @@ final class GameScene: SKScene {
             }
         }
 
-        for point in level.enemySpawnPoints {
-            let enemy = Enemy(gameZone: gameZone)
+        for (index, point) in level.enemySpawnPoints.enumerated() {
+            let enemy = level.difficulty.enemyTypes[index].create(gameZone: gameZone)
             enemy.position = CGPoint(x: CGFloat(point.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(point.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
             gameZone.addChild(enemy)
-            enemyPositions = level.enemySpawnPoints
             enemies.append(enemy)
         }
 
@@ -159,11 +174,10 @@ final class GameScene: SKScene {
 
     private func enemyKilled() {
         if enemies.isEmpty {
-            for point in level.enemySpawnPoints {
-                let enemy = Enemy(gameZone: gameZone)
+            for (index, point) in levelGenerator.generateEnemySpawnPoints(grid: level.grid, playerPosition: gameZoneToLevelPosition(coordinate: player.position)).enumerated() {
+                let enemy = level.difficulty.enemyTypes[index].create(gameZone: gameZone)
                 enemy.position = CGPoint(x: CGFloat(point.x) * Constants.cellSize.width + Constants.cellSize.width / 2, y: CGFloat(point.y) * Constants.cellSize.height + Constants.cellSize.height / 2)
                 gameZone.addChild(enemy)
-                enemyPositions = level.enemySpawnPoints
                 enemies.append(enemy)
             }
         }
@@ -213,9 +227,9 @@ extension GameScene: SKPhysicsContactDelegate {
         }
 
         if (contact.bodyA.node?.name == "bulletPlayer" && contact.bodyB.node?.name == "enemy") {
-            if let enemy = contact.bodyB.node as? Enemy, let index = enemies.firstIndex(of: enemy) {
+            guard let enemy = contact.bodyB.node as? Enemy, enemy.shouldDie() else { return }
+            if let index = enemies.firstIndex(of: enemy) {
                 enemies.remove(at: index)
-                enemyPositions.remove(at: index)
             }
 
             contact.bodyA.node?.removeFromParent()
@@ -225,9 +239,10 @@ extension GameScene: SKPhysicsContactDelegate {
             enemyKilled()
         }
         if (contact.bodyA.node?.name == "enemy" && contact.bodyB.node?.name == "bulletPlayer") {
-            if let enemy = contact.bodyA.node as? Enemy, let index = enemies.firstIndex(of: enemy) {
+            guard let enemy = contact.bodyA.node as? Enemy, enemy.shouldDie() else { return }
+
+            if let index = enemies.firstIndex(of: enemy) {
                 enemies.remove(at: index)
-                enemyPositions.remove(at: index)
             }
 
             contact.bodyA.node?.removeFromParent()
@@ -258,12 +273,5 @@ extension GameScene: SKPhysicsContactDelegate {
             contact.bodyB.node?.removeFromParent()
             stopGame()
         }
-    }
-}
-
-extension GameScene: PlayerDelegate {
-    func onPlayerMoved(direction: Direction) {
-        level.movePlayerPosition(direction: direction)
-        print(level!)
     }
 }

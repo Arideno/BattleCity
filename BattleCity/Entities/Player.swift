@@ -2,9 +2,24 @@ import Foundation
 import SpriteKit
 
 final class Player: SKSpriteNode {
-    private var direction: Direction = .up
+    var direction: Direction = .up {
+        didSet {
+            switch direction {
+            case .up:
+                zRotation = 0
+            case .down:
+                zRotation = .pi
+            case .left:
+                zRotation = .pi / 2
+            case .right:
+                zRotation = -.pi / 2
+            }
+        }
+    }
     private var gameZone: GameZone!
-    weak var delegate: PlayerDelegate?
+    private(set) var isMoving = false
+    var isCommandedToMove = false
+    private var movesCount = 0
 
     convenience init(gameZone: GameZone) {
         self.init(imageNamed: "player")
@@ -17,36 +32,26 @@ final class Player: SKSpriteNode {
         self.physicsBody?.collisionBitMask = Constants.wallFlag | Constants.enemyFlag | Constants.bulletFlag
     }
 
-    func moveUp() {
-        guard !hasActions() else { return }
-        direction = .up
-        run(SKAction.sequence([SKAction.rotate(toAngle: 0, duration: 0), SKAction.move(by: CGVector(dx: 0, dy: Constants.cellSize.height), duration: 0.1)]))
-        { [weak delegate] in
-            delegate?.onPlayerMoved(direction: .up)
-        }
-    }
+    func move() {
+        if isMoving {
+            switch direction {
+            case .up:
+                position.y += 1
+            case .down:
+                position.y -= 1
+            case .left:
+                position.x -= 1
+            case .right:
+                position.x += 1
+            }
+            movesCount += 1
 
-    func moveDown() {
-        guard !hasActions() else { return }
-        direction = .down
-        run(SKAction.sequence([SKAction.rotate(toAngle: .pi, duration: 0), SKAction.move(by: CGVector(dx: 0, dy: -Constants.cellSize.height), duration: 0.1)])) { [weak delegate] in
-            delegate?.onPlayerMoved(direction: .down)
-        }
-    }
-
-    func moveLeft() {
-        guard !hasActions() else { return }
-        direction = .left
-        run(SKAction.sequence([SKAction.rotate(toAngle: .pi / 2, duration: 0), SKAction.move(by: CGVector(dx: -Constants.cellSize.width, dy: 0), duration: 0.1)])) { [weak delegate] in
-            delegate?.onPlayerMoved(direction: .left)
-        }
-    }
-
-    func moveRight() {
-        guard !hasActions() else { return }
-        direction = .right
-        run(SKAction.sequence([SKAction.rotate(toAngle: -.pi / 2, duration: 0), SKAction.move(by: CGVector(dx: Constants.cellSize.width, dy: 0), duration: 0.1)])) { [weak delegate] in
-            delegate?.onPlayerMoved(direction: .right)
+            if movesCount == 40 {
+                isMoving = false
+                movesCount = 0
+            }
+        } else if isCommandedToMove {
+            isMoving = true
         }
     }
 
@@ -57,8 +62,4 @@ final class Player: SKSpriteNode {
         gameZone.addChild(bullet)
         bullet.spawn(direction: direction, position: position)
     }
-}
-
-protocol PlayerDelegate: AnyObject {
-    func onPlayerMoved(direction: Direction)
 }

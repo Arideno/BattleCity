@@ -1,22 +1,22 @@
 import Foundation
 
 final class ShootBaseOrPlayerStrategy: ShootingStrategy {
-    func shouldShoot(enemyPos: Point, enemyDir: Direction, level: Level) -> Bool {
-        if enemyPos.x == level.basePosition.x && enemyDir == .down && enemyPos.y > level.basePosition.y {
+    func shouldShoot(enemyPos: Point, enemyDir: Direction, playerPosition: Point, basePosition: Point, grid: [[Cell]]) -> Bool {
+        if enemyPos.x == basePosition.x && enemyDir == .down && enemyPos.y > basePosition.y {
             return true
-        } else if enemyPos.x == level.basePosition.x && enemyDir == .up && enemyPos.y < level.basePosition.y {
+        } else if enemyPos.x == basePosition.x && enemyDir == .up && enemyPos.y < basePosition.y {
             return true
-        } else if enemyPos.y == level.basePosition.y && enemyDir == .right && enemyPos.x < level.basePosition.x {
+        } else if enemyPos.y == basePosition.y && enemyDir == .right && enemyPos.x < basePosition.x {
             return true
-        } else if enemyPos.y == level.basePosition.y && enemyDir == .left && enemyPos.x > level.basePosition.x {
+        } else if enemyPos.y == basePosition.y && enemyDir == .left && enemyPos.x > basePosition.x {
             return true
-        } else if enemyPos.x == level.playerPosition.x && enemyDir == .down && enemyPos.y > level.playerPosition.y {
+        } else if enemyPos.x == playerPosition.x && enemyDir == .down && enemyPos.y > playerPosition.y {
             return true
-        } else if enemyPos.x == level.playerPosition.x && enemyDir == .up && enemyPos.y < level.playerPosition.y {
+        } else if enemyPos.x == playerPosition.x && enemyDir == .up && enemyPos.y < playerPosition.y {
             return true
-        } else if enemyPos.y == level.playerPosition.y && enemyDir == .right && enemyPos.x < level.playerPosition.x {
+        } else if enemyPos.y == playerPosition.y && enemyDir == .right && enemyPos.x < playerPosition.x {
             return true
-        } else if enemyPos.y == level.playerPosition.y && enemyDir == .left && enemyPos.x > level.playerPosition.x {
+        } else if enemyPos.y == playerPosition.y && enemyDir == .left && enemyPos.x > playerPosition.x {
             return true
         }
 

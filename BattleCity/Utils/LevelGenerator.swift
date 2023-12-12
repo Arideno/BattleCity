@@ -95,17 +95,23 @@ final class LevelGenerator {
 
         grid[playerPosition.y][playerPosition.x] = .player
 
+        let enemySpawnPoints = generateEnemySpawnPoints(grid: grid, playerPosition: playerPosition)
+
+        return Level(width: width, height: height, grid: grid, playerPosition: playerPosition, enemySpawnPoints: enemySpawnPoints, basePosition: Point(x: width / 2, y: 0), difficulty: difficulty)
+    }
+
+    func generateEnemySpawnPoints(grid: [[Cell]], playerPosition: Point) -> [Point] {
         var enemySpawnPoints = [Point]()
 
-        for _ in 0..<difficulty.enemyCount {
+        for _ in 0..<difficulty.enemyTypes.count {
             var enemySpawnPosition = Point(x: 0, y: 0)
-            while grid[enemySpawnPosition.y][enemySpawnPosition.x] != .space || manhattanDistance(a: enemySpawnPosition, b: playerPosition) <= 30 || enemySpawnPoints.contains(enemySpawnPosition) {
+            while grid[enemySpawnPosition.y][enemySpawnPosition.x] != .space || manhattanDistance(a: enemySpawnPosition, b: playerPosition) <= 20 || enemySpawnPoints.contains(enemySpawnPosition) {
                 enemySpawnPosition = Point(x: Int.random(in: 0..<width), y: Int.random(in: 0..<height))
             }
             enemySpawnPoints.append(enemySpawnPosition)
         }
 
-        return Level(width: width, height: height, grid: grid, playerPosition: playerPosition, enemySpawnPoints: enemySpawnPoints, basePosition: Point(x: width / 2, y: 0), difficulty: difficulty)
+        return enemySpawnPoints
     }
 }
 

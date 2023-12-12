@@ -1,45 +1,60 @@
 import Foundation
 import SpriteKit
 
-final class Enemy: SKSpriteNode {
-    private(set) var direction: Direction = .up
-    private var gameZone: GameZone!
-    private var lastShootTime: TimeInterval = 0
+class Enemy: SKSpriteNode {
+    var direction: Direction = .up {
+        didSet {
+            switch direction {
+            case .up:
+                zRotation = 0
+            case .down:
+                zRotation = .pi
+            case .left:
+                zRotation = .pi / 2
+            case .right:
+                zRotation = -.pi / 2
+            }
+        }
+    }
 
-    convenience init(gameZone: GameZone) {
-        self.init(imageNamed: "enemy")
-        self.size = Constants.cellSize
-        self.gameZone = gameZone
+    fileprivate var gameZone: GameZone!
+    private var lastShootTime: TimeInterval = 0
+    private(set) var isMoving: Bool = false
+    private var movesCount = 0
+    fileprivate var lifes: Int!
+
+    override init(texture: SKTexture?, color: NSColor, size: CGSize) {
+        super.init(texture: texture, color: .white, size: size)
         self.name = "enemy"
-        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        self.physicsBody = SKPhysicsBody(rectangleOf: Constants.cellSize)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = Constants.enemyFlag
         self.physicsBody?.collisionBitMask = Constants.wallFlag | Constants.playerFlag
         self.physicsBody?.contactTestBitMask = Constants.bulletFlag
     }
-
-    func moveUp(completion: @escaping () -> Void) {
-        guard !hasActions() else { return }
-        direction = .up
-        run(SKAction.sequence([SKAction.rotate(toAngle: 0, duration: 0), SKAction.move(by: CGVector(dx: 0, dy: Constants.cellSize.height), duration: 0.2)]), completion: completion)
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    func moveDown(completion: @escaping () -> Void) {
-        guard !hasActions() else { return }
-        direction = .down
-        run(SKAction.sequence([SKAction.rotate(toAngle: .pi, duration: 0), SKAction.move(by: CGVector(dx: 0, dy: -Constants.cellSize.height), duration: 0.2)]), completion: completion)
-    }
+    func move() {
+        isMoving = true
+        switch direction {
+        case .up:
+            position.y += 1
+        case .down:
+            position.y -= 1
+        case .left:
+            position.x -= 1
+        case .right:
+            position.x += 1
+        }
+        movesCount += 1
 
-    func moveLeft(completion: @escaping () -> Void) {
-        guard !hasActions() else { return }
-        direction = .left
-        run(SKAction.sequence([SKAction.rotate(toAngle: .pi / 2, duration: 0), SKAction.move(by: CGVector(dx: -Constants.cellSize.width, dy: 0), duration: 0.2)]), completion: completion)
-    }
-
-    func moveRight(completion: @escaping () -> Void) {
-        guard !hasActions() else { return }
-        direction = .right
-        run(SKAction.sequence([SKAction.rotate(toAngle: -.pi / 2, duration: 0), SKAction.move(by: CGVector(dx: Constants.cellSize.width, dy: 0), duration: 0.2)]), completion: completion)
+        if movesCount == 40 {
+            isMoving = false
+            movesCount = 0
+        }
     }
 
     func shoot(currentTime: TimeInterval) {
@@ -49,5 +64,34 @@ final class Enemy: SKSpriteNode {
         bullet.isHidden = true
         gameZone.addChild(bullet)
         bullet.spawn(direction: direction, position: position)
+    }
+
+    func shouldDie() -> Bool {
+        lifes -= 1
+        return lifes <= 0
+    }
+}
+
+final class EnemySmall: Enemy {
+    init(gameZone: GameZone) {
+        super.init(texture: SKTexture(imageNamed: "enemy"), color: .white, size: .init(width: 30, height: 30))
+        self.gameZone = gameZone
+        self.lifes = 1
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+final class EnemyBig: Enemy {
+    init(gameZone: GameZone) {
+        super.init(texture: SKTexture(imageNamed: "enemy_big"), color: .white, size: .init(width: 40, height: 40))
+        self.gameZone = gameZone
+        self.lifes = 2
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

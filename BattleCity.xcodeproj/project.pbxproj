@@ -25,7 +25,6 @@
 		E27265C52B27388200DF4584 /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265C42B27388200DF4584 /* Difficulty.swift */; };
 		E27265C72B2738C900DF4584 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265C62B2738C900DF4584 /* Level.swift */; };
 		E27265CA2B27474F00DF4584 /* PathAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265C92B27474F00DF4584 /* PathAlgorithm.swift */; };
-		E27265CC2B27477300DF4584 /* DFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265CB2B27477300DF4584 /* DFS.swift */; };
 		E27265CE2B27492400DF4584 /* BFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265CD2B27492400DF4584 /* BFS.swift */; };
 		E27265D02B27494400DF4584 /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265CF2B27494400DF4584 /* AStar.swift */; };
 		E27265D52B27564400DF4584 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = E27265D42B27564400DF4584 /* Collections */; };
@@ -36,6 +35,7 @@
 		E27265DF2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265DE2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift */; };
 		E27265E12B2760C400DF4584 /* ShootPlayerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265E02B2760C400DF4584 /* ShootPlayerStrategy.swift */; };
 		E27265E32B27612C00DF4584 /* ShootBaseOrPlayerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27265E22B27612C00DF4584 /* ShootBaseOrPlayerStrategy.swift */; };
+		E29929662B2880B60024A431 /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29929652B2880B60024A431 /* EnemyType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +58,6 @@
 		E27265C42B27388200DF4584 /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		E27265C62B2738C900DF4584 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		E27265C92B27474F00DF4584 /* PathAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathAlgorithm.swift; sourceTree = "<group>"; };
-		E27265CB2B27477300DF4584 /* DFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFS.swift; sourceTree = "<group>"; };
 		E27265CD2B27492400DF4584 /* BFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFS.swift; sourceTree = "<group>"; };
 		E27265CF2B27494400DF4584 /* AStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStar.swift; sourceTree = "<group>"; };
 		E27265DA2B275BBF00DF4584 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		E27265DE2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift; sourceTree = "<group>"; };
 		E27265E02B2760C400DF4584 /* ShootPlayerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootPlayerStrategy.swift; sourceTree = "<group>"; };
 		E27265E22B27612C00DF4584 /* ShootBaseOrPlayerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootBaseOrPlayerStrategy.swift; sourceTree = "<group>"; };
+		E29929652B2880B60024A431 /* EnemyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +136,7 @@
 				E27265BC2B27216E00DF4584 /* LevelGenerator.swift */,
 				E27265C42B27388200DF4584 /* Difficulty.swift */,
 				E27265C62B2738C900DF4584 /* Level.swift */,
+				E29929652B2880B60024A431 /* EnemyType.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -146,7 +147,6 @@
 				E27265C92B27474F00DF4584 /* PathAlgorithm.swift */,
 				E27265CD2B27492400DF4584 /* BFS.swift */,
 				E27265CF2B27494400DF4584 /* AStar.swift */,
-				E27265CB2B27477300DF4584 /* DFS.swift */,
 				E27265DC2B275F1000DF4584 /* ShootingStrategy.swift */,
 				E27265DE2B275F4D00DF4584 /* ShootPlayerOnlyIfNoObstaclesShootingStrategy.swift */,
 				E27265E02B2760C400DF4584 /* ShootPlayerStrategy.swift */,
@@ -235,6 +235,7 @@
 			files = (
 				E27265C12B2734DA00DF4584 /* Base.swift in Sources */,
 				E27265CA2B27474F00DF4584 /* PathAlgorithm.swift in Sources */,
+				E29929662B2880B60024A431 /* EnemyType.swift in Sources */,
 				E27265AE2B27154700DF4584 /* Player.swift in Sources */,
 				E27265C52B27388200DF4584 /* Difficulty.swift in Sources */,
 				E27265C72B2738C900DF4584 /* Level.swift in Sources */,
@@ -246,7 +247,6 @@
 				E27265BF2B272E1600DF4584 /* Wall.swift in Sources */,
 				E27265DB2B275BBF00DF4584 /* GameOverScene.swift in Sources */,
 				E272659E2B27149200DF4584 /* MainScene.swift in Sources */,
-				E27265CC2B27477300DF4584 /* DFS.swift in Sources */,
 				E27265982B27149200DF4584 /* AppDelegate.swift in Sources */,
 				E27265B52B27185500DF4584 /* GameScene.swift in Sources */,
 				E27265BB2B271E6400DF4584 /* Direction.swift in Sources */,

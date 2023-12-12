@@ -5,14 +5,6 @@ enum Difficulty {
     case normal
     case hard
 
-    var enemyCount: Int {
-        switch self {
-        case .easy: 3
-        case .normal: 5
-        case .hard: 7
-        }
-    }
-
     var scoreForEnemy: Int {
         switch self {
         case .easy: 5
@@ -23,8 +15,7 @@ enum Difficulty {
 
     var pathFindingAlgorithm: PathAlgorithm {
         switch self {
-        case .easy: DFS()
-        case .normal: BFS()
+        case .easy, .normal: BFS()
         case .hard: AStar()
         }
     }
@@ -34,6 +25,14 @@ enum Difficulty {
         case .easy: ShootPlayerOnlyIfNoObstaclesShootingStrategy()
         case .normal: ShootPlayerStrategy()
         case .hard: ShootBaseOrPlayerStrategy()
+        }
+    }
+
+    var enemyTypes: [EnemyType] {
+        switch self {
+        case .easy: Array(repeating: .small, count: 3)
+        case .normal: Array(repeating: .small, count: 3) + Array(repeating: .big, count: 2)
+        case .hard: Array(repeating: .small, count: 2) + Array(repeating: .big, count: 5)
         }
     }
 }
